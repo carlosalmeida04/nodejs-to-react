@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import axios from "axios"
 import './App.css';
 
 function App() {
+
+	const [dataFromServer, setDataFromServer] = useState({ id: new Number(), user: "", password: ""})
+	const [dataForServer, setDataForServer] = useState({ id: 1, user: "Carlos Almeida", password: "supersafepassword" })
+
+	const getRequest = () => {
+		axios({
+			method: "get",
+			url: "http://localhost:4000/userExample",
+		}).then(function (response) {
+			const data = response.data
+			console.log(data)
+			setDataFromServer({ id: data.id, user: data.user, password: data.password })
+		}).catch(alert)
+	}
+
+	const postRequest = () => {
+
+	}
+
 	return (
 		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Learn React
-				</a>
-			</header>
+
+			<button onClick={getRequest}>GET Request to NodeJS API</button>
+			<button onClick={postRequest}>POST Request to NodeJS API</button>
+			{
+				dataFromServer === {} ? dataFromServer.map((data) => (
+					<>
+						<p> ID: {data.id} </p>
+						<p> User: {data.user} </p>
+						<p> Password: {data.password} </p>
+					</>
+				)) : false
+			}
 		</div>
 	);
 }

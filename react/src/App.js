@@ -4,8 +4,8 @@ import './App.css';
 
 function App() {
 
-	const [dataFromServer, setDataFromServer] = useState({ id: new Number(), user: "", password: ""})
-	const [dataForServer, setDataForServer] = useState({ id: 1, user: "Carlos Almeida", password: "supersafepassword" })
+	const [dataFromServer, setDataFromServer] = useState({ id: null, user: "", password: "" })
+	//const [dataForServer, setDataForServer] = useState({ id: 1, user: "Carlos Almeida", password: "supersafepassword" })
 
 	const getRequest = () => {
 		axios({
@@ -15,27 +15,20 @@ function App() {
 			const data = response.data
 			console.log(data)
 			setDataFromServer({ id: data.id, user: data.user, password: data.password })
+			console.log(dataFromServer)
 		}).catch(alert)
-	}
-
-	const postRequest = () => {
-
 	}
 
 	return (
 		<div className="App">
 
+			<p> ID: {dataFromServer.id} </p>
+			<p> User: {dataFromServer.user} </p>
+			<p> Password: {dataFromServer.password} </p>
+
 			<button onClick={getRequest}>GET Request to NodeJS API</button>
 			<button onClick={postRequest}>POST Request to NodeJS API</button>
-			{
-				dataFromServer === {} ? dataFromServer.map((data) => (
-					<>
-						<p> ID: {data.id} </p>
-						<p> User: {data.user} </p>
-						<p> Password: {data.password} </p>
-					</>
-				)) : false
-			}
+
 		</div>
 	);
 }

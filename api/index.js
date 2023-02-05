@@ -2,11 +2,12 @@ const express = require("express")
 const app = express()
 const cors = require("cors")
 
-app.use(cors())
-app.get("/userExample", (req, res) => {
 
+app.use(cors())
+
+app.get("/userExample", (req, res) => {
     const dataToSend = { id: 1, user: "Carlos Almeida", password: "supersafepassword" }
-    res.send(JSON.stringify(dataToSend))
+    res.send(dataToSend)
     req.accepts(["json", "html", "text/plain"])
 })
 

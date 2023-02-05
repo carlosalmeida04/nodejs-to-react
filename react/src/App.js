@@ -11,11 +11,9 @@ function App() {
 		axios({
 			method: "get",
 			url: "http://localhost:4000/userExample",
-		}).then(function (response) {
+		}).then((response) => {
 			const data = response.data
-			console.log(data)
 			setDataFromServer({ id: data.id, user: data.user, password: data.password })
-			console.log(dataFromServer)
 		}).catch(alert)
 	}
 

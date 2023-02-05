@@ -27,8 +27,6 @@ function App() {
 			<p> Password: {dataFromServer.password} </p>
 
 			<button onClick={getRequest}>GET Request to NodeJS API</button>
-			<button onClick={postRequest}>POST Request to NodeJS API</button>
-
 		</div>
 	);
 }

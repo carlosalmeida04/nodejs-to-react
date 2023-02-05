@@ -5,7 +5,7 @@ import './App.css';
 function App() {
 
 	const [dataFromServer, setDataFromServer] = useState({ id: null, user: "", password: "" })
-	//const [dataForServer, setDataForServer] = useState({ id: 1, user: "Carlos Almeida", password: "supersafepassword" })
+
 
 	const getRequest = () => {
 		axios({
